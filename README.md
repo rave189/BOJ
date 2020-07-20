@@ -1,2 +1,2 @@
 # BOJ
-backjoon online judge
+Backjoon Online Judge
