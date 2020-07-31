@@ -10,6 +10,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int num = Integer.parseInt(br.readLine());
+		// case1
 		hanoi(num, 1, 2, 3);
 		System.out.println(count+"\n"+sb.toString());
 	}
