@@ -13,6 +13,11 @@ public class Main {
 		// case1
 		hanoi(num, 1, 2, 3);
 		System.out.println(count+"\n"+sb.toString());
+		/*case2
+		System.out.println((int)(Math.pow(2, num))-1);
+		hanoi(num, 1, 2, 3);
+		bw.flush();
+		*/
 	}
 
 	public static void hanoi(int n, int fir, int sec, int last) throws IOException {
