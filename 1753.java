@@ -7,8 +7,9 @@ import java.util.PriorityQueue;
 
 public class Main {
 
-	final static int INF = 1000000;
-
+	// final static int INF = 1000000;
+	final static int INF = Integer.MAX_VALUE;
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -16,6 +17,8 @@ public class Main {
 		int vertex = Integer.parseInt(s[0]);
 		int edge = Integer.parseInt(s[1]);
 		int start = Integer.parseInt(br.readLine());
+		
+		/*
 		LinkedList ll = new LinkedList(vertex);
 		int[] distance = new int[vertex];
 		for (int i = 0; i < vertex; i++)
@@ -31,6 +34,26 @@ public class Main {
 		PriorityQueue<Node> pq = new PriorityQueue<Node>();
 		pq.add(new Node(start - 1, 0));
 		distance[start - 1] = 0;
+		*/
+		
+		LinkedList ll = new LinkedList(vertex + 1);
+		int[] distance = new int[vertex + 1];
+
+		for (int i = 1; i <= vertex; i++)
+			distance[i] = INF;
+
+		for (int i = 0; i < edge; i++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+			int weight = Integer.parseInt(st.nextToken());
+			ll.insert(weight, x, y);
+		}
+
+		PriorityQueue<Node> pq = new PriorityQueue<Node>();
+		pq.add(new Node(start, 0));
+		distance[start] = 0;
+		
 		while (!pq.isEmpty()) {
 			Node curVertex = pq.poll();
 			Node it = ll.search(curVertex.vertex);
@@ -43,24 +66,33 @@ public class Main {
 				it = it.next;
 			}
 		}
-
+		/*
 		for (int i = 0; i < vertex; i++)
 			if (distance[i] == INF)
 				bw.write("INF\n");
 			else
 				bw.write(Integer.toString(distance[i]) + "\n");
+		*/
+		for (int i = 1; i <= vertex; i++)
+			if (distance[i] == INF)
+				bw.write("INF\n");
+			else
+				bw.write(distance[i] + "\n");
 		bw.flush();
 	}
 }
 
 class LinkedList {
 	Node[] root;
+	Node[] tail;
 
 	public LinkedList(int vertex) {
 		root = new Node[vertex];
+		tail = new Node[vertex];
 	}
 
 	public void insert(int weight, int x, int y) {
+		/*
 		if (root[x] == null)
 			root[x] = new Node(y, weight);
 		else {
@@ -85,6 +117,15 @@ class LinkedList {
 			}
 			if (it == null)
 				prev.next = newNode;
+		}
+		*/
+		if (root[x] == null) {
+			root[x] = new Node(y, weight);
+			tail[x] = root[x];
+		} else {
+			Node newNode = new Node(y, weight);
+			tail[x].next = newNode;
+			tail[x] = newNode;
 		}
 	}
 
