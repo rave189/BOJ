@@ -6,7 +6,7 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		int n = input.nextInt();
 		int k = input.nextInt();
-		int[] arr = new int[2 (n + k) + 1];
+		int[] arr = new int[2 * (n + k) + 1];
 		for (int i = n - 1; i >= 0; i--)
 			arr[i] = arr[i + 1] + 1;
 		for (int i = n + 1; i < arr.length; i++)
