@@ -15,8 +15,6 @@ public class Main {
 				answer /= 10;
 			answer %= 1000000;
 		}
-		while (answer % 10 == 0)
-			answer /= 10;
 		System.out.println(answer % 10);
 	}
 }
